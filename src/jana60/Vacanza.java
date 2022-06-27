@@ -1,6 +1,7 @@
 package jana60;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Vacanza {
 		
@@ -85,6 +86,11 @@ public class Vacanza {
 	}
 	
 	//METODI
+	public Period durataVacanza(LocalDate dataInizio, LocalDate dataFine)
+	{
+		Period durataVacanza = Period.between(dataInizio, dataFine);
+		return durataVacanza;
+	}
 	
 	//GESTIONE ECCEZIONI
 	
