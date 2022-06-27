@@ -10,7 +10,7 @@ public class Vacanza {
 	private String destinazione;
 	private LocalDate dataInizio, dataFine;
 	//Variabili dei metodi
-	private static final LocalDate dataOggi = LocalDate.now();
+	public static final LocalDate dataOggi = LocalDate.now();
 	
 	//COSTRUTTORI
 	public Vacanza(String destinazione, LocalDate dataInizio, LocalDate dataFine) throws Exception

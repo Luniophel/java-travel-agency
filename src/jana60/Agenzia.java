@@ -1,12 +1,17 @@
 package jana60;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
 
 public class Agenzia {
 
 	public static void main(String[] args) {
 		
 		Scanner scan = new Scanner(System.in);
+		DateTimeFormatter dataIT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 		boolean continua = true;
 		boolean creaVacanza = true;
@@ -42,6 +47,24 @@ public class Agenzia {
 		
 		while (creaVacanza) 
 		{
+			System.out.println("Oggi è il " + dataIT.format(Vacanza.dataOggi));
+			try
+			{
+				//Compilazione dei dati del viaggio
+				System.out.print("\nDigita la meta del tuo viaggio: ");
+				String tempDestinazione = scan.nextLine();
+				
+				System.out.print("\nDigita la data di andata: ");
+				String tempDataInizio = scan.nextLine();
+				
+				System.out.print("\nDigita la data di ritorno: ");
+				String tempDataFine = scan.nextLine();
+			}
+			catch (Exception genericExc)
+			{
+				System.out.println("Qualcosa è andato storto...\n" + genericExc.getMessage());
+			}
+			
 			
 		}
 		
