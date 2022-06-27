@@ -110,7 +110,18 @@ public class Vacanza {
 			throw new IllegalArgumentException("Ti piacciono i paradossi temporali? Anche a me!\nLa data di fine vacanza non può essere prima della partenza.");
 	}
 	
-	
+	@Override
+	public String toString()
+	{
+		return 
+				
+		"\n"+	"Hai prenotato una vacanza di "		+	durataVacanza(getDataInizio(), getDataFine())	+
+		"\n"+	"La tua vacanza inizia il giorno "	+	getDataInizio()									+
+		"\n"+	"e termina il giorno "				+	getDataFine()									+
+		"\n"+	"Destinazione: "					+	getDestinazione()								;
+
+
+	}
 	
 
 }

@@ -55,17 +55,25 @@ public class Agenzia {
 				String tempDestinazione = scan.nextLine();
 				
 				System.out.print("\nDigita la data di andata: ");
-				String tempDataInizio = scan.nextLine();
+				String tempDataInizioSt = scan.nextLine();
+				LocalDate tempDataInizioLD = LocalDate.parse(tempDataInizioSt, dataIT);
 				
 				System.out.print("\nDigita la data di ritorno: ");
-				String tempDataFine = scan.nextLine();
+				String tempDataFineSt = scan.nextLine();
+				LocalDate tempDataFineLD = LocalDate.parse(tempDataFineSt, dataIT);
+				
+				//Tentativo creazione di Vacanza()
+				Vacanza vacanza = new Vacanza(tempDestinazione, tempDataInizioLD, tempDataFineLD);
+				
+				System.out.println(vacanza.toString());
 			}
+			
 			catch (Exception genericExc)
 			{
 				System.out.println("Qualcosa è andato storto...\n" + genericExc.getMessage());
 			}
 			
-			
+			//Se volessimo decidere di salvare gli oggetti Vacanza, sarebbe necessario un costruttore di copia Vacanza(Vacanza vacanza)
 		}
 		
 		System.out.println("Va bene, alla prossima!");
