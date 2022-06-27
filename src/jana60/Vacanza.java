@@ -2,9 +2,12 @@ package jana60;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class Vacanza {
 		
+	DateTimeFormatter dataIT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
 	//ATTRIBUTI
 	//Variabili del costruttore Vacanza
 	private String destinazione;
@@ -86,7 +89,7 @@ public class Vacanza {
 	}
 	
 	//METODI
-	public Period durataVacanza(LocalDate dataInizio, LocalDate dataFine)
+	private Period durataVacanza(LocalDate dataInizio, LocalDate dataFine)
 	{
 		Period durataVacanza = Period.between(dataInizio, dataFine);
 		return durataVacanza;
@@ -115,10 +118,14 @@ public class Vacanza {
 	{
 		return 
 				
-		"\n"+	"Hai prenotato una vacanza di "		+	durataVacanza(getDataInizio(), getDataFine())	+
-		"\n"+	"La tua vacanza inizia il giorno "	+	getDataInizio()									+
-		"\n"+	"e termina il giorno "				+	getDataFine()									+
-		"\n"+	"Destinazione: "					+	getDestinazione()								;
+		"\n"+	"Hai prenotato una vacanza di "		+	
+		"\n"+	durataVacanza(getDataInizio(), getDataFine()).getDays()		+	" giorni,"	+
+		"\n"+	durataVacanza(getDataInizio(), getDataFine()).getMonths()	+	" mesi,"	+
+		"\n"+	durataVacanza(getDataInizio(), getDataFine()).getYears()	+	" anni."	+
+
+		"\n"+	"La tua vacanza inizia il giorno "	+	dataIT.format(getDataInizio())	+
+		"\n"+	"e termina il giorno "				+	dataIT.format(getDataFine()) 	+
+		"\n"+	"Destinazione: "					+	getDestinazione()				;
 
 
 	}
