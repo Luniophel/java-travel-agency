@@ -34,10 +34,29 @@ public class Vacanza {
 		}
 		
 		//Validazione dada di fine
+		try
+		{
+			validaDataFine(dataFine);
+		}
+		catch (IllegalArgumentException iae)
+		{
+			datiValidi = false;
+			mexErrore += " " + iae.getMessage();
+		}
+		catch (NullPointerException npe)
+		{
+			datiValidi = false;
+			mexErrore += " " + npe.getMessage();
+		}
 		
-		this.destinazione = destinazione;
-		this.dataInizio = dataInizio;
-		this.dataFine = dataFine;
+		
+		if (datiValidi) {
+			this.destinazione = destinazione;
+			this.dataInizio = dataInizio;
+			this.dataFine = dataFine;
+		}
+		else
+			throw new Exception(mexErrore);
 	}
 
 	//GETTER / SETTERS
