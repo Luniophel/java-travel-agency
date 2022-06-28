@@ -68,6 +68,7 @@ public class Vacanza {
 		try
 		{
 			validaDataInizio(dataInizio);
+			validaDataInizioFine(dataInizio, getDataFine());
 		}
 		catch (IllegalArgumentException iae)
 		{
@@ -97,6 +98,7 @@ public class Vacanza {
 		try
 		{
 			validaDataFine(dataFine);
+			validaDataInizioFine(getDataInizio(), dataFine);
 		}
 		catch (IllegalArgumentException iae)
 		{
