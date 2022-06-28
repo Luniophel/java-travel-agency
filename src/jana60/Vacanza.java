@@ -25,6 +25,8 @@ public class Vacanza {
 		try
 		{
 			validaDataInizio(dataInizio);
+			validaDataFine(dataFine);
+			validaDataInizioFine(dataInizio, dataFine);
 		} 
 		catch (IllegalArgumentException iae)
 		{
@@ -35,24 +37,7 @@ public class Vacanza {
 		{
 			datiValidi = false;
 			mexErrore += " " + npe.getMessage();
-		}
-		
-		//Validazione dada di fine
-		try
-		{
-			validaDataFine(dataFine);
-		}
-		catch (IllegalArgumentException iae)
-		{
-			datiValidi = false;
-			mexErrore += " " + iae.getMessage();
-		}
-		catch (NullPointerException npe)
-		{
-			datiValidi = false;
-			mexErrore += " " + npe.getMessage();
-		}
-		
+		}	
 		
 		if (datiValidi) {
 			this.destinazione = destinazione;
@@ -76,16 +61,58 @@ public class Vacanza {
 		return dataInizio;
 	}
 
-	public void setDataInizio(LocalDate dataInizio) {
-		this.dataInizio = dataInizio;
+	public void setDataInizio(LocalDate dataInizio) throws Exception {
+		boolean datiValidi = true;
+		String mexErrore = "";
+		
+		try
+		{
+			validaDataInizio(dataInizio);
+		}
+		catch (IllegalArgumentException iae)
+		{
+			datiValidi = false;
+			mexErrore += " " + iae.getMessage();
+		}
+		catch (NullPointerException npe)
+		{
+			datiValidi = false;
+			mexErrore += " " + npe.getMessage();
+		}
+		if (datiValidi) {
+			this.dataInizio = dataInizio;
+		}
+		else
+			throw new Exception(mexErrore);
 	}
 
 	public LocalDate getDataFine() {
 		return dataFine;
 	}
 
-	public void setDataFine(LocalDate dataFine) {
-		this.dataFine = dataFine;
+	public void setDataFine(LocalDate dataFine) throws Exception {
+		boolean datiValidi = true;
+		String mexErrore = "";
+		
+		try
+		{
+			validaDataFine(dataFine);
+		}
+		catch (IllegalArgumentException iae)
+		{
+			datiValidi = false;
+			mexErrore += " " + iae.getMessage();
+		}
+		catch (NullPointerException npe)
+		{
+			datiValidi = false;
+			mexErrore += " " + npe.getMessage();
+		}
+		if (datiValidi) {
+			this.dataFine = dataFine;
+		}
+		else
+			throw new Exception(mexErrore);
 	}
 	
 	//METODI
@@ -111,6 +138,12 @@ public class Vacanza {
 			throw new NullPointerException("Devi dichiarare la data in cui finirà la tua vacanza.");
 		if(dataFInput.isBefore(dataOggi))
 			throw new IllegalArgumentException("Ti piacciono i paradossi temporali? Anche a me!\nLa data di fine vacanza non può essere prima della partenza.");
+	}
+	
+	private void validaDataInizioFine(LocalDate dataIInput, LocalDate dataFInput) throws IllegalArgumentException
+	{
+		if(dataIInput.isAfter(dataFInput))
+			throw new IllegalArgumentException("Non puoi partire dopo la fine della vacanza.");
 	}
 	
 	@Override
